@@ -1,0 +1,11 @@
+.portfolio-page {
+  min-height: 100svh;
+  background: #ffffff;
+  padding: 0;
+}
+
+.page-frame {
+  width: 100%;
+  margin: 0;
+  background: #ffffff;
+}

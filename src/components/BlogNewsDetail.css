@@ -1,0 +1,318 @@
+/* Blog News Detail */
+
+.blog-detail-page {
+  min-height: 100svh;
+  padding: 24px 0 80px;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at 86% 8%, rgba(37, 99, 235, 0.12), transparent 28%),
+    radial-gradient(circle at 12% 12%, rgba(14, 165, 233, 0.1), transparent 26%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 58%, #f1f5f9 100%);
+}
+
+.blog-detail-shell {
+  width: min(1120px, calc(100% - 48px));
+  margin: 56px auto 0;
+}
+
+.blog-detail-breadcrumbs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+  color: #64748b;
+  font-family: var(--utility-font);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.blog-detail-breadcrumbs nav,
+.blog-detail-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.blog-detail-breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-detail-breadcrumbs a:hover,
+.blog-detail-breadcrumbs a:focus-visible {
+  color: #155de8;
+}
+
+.blog-detail-breadcrumbs strong {
+  color: #0f172a;
+  font-weight: 850;
+}
+
+.blog-detail-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+}
+
+.blog-detail-meta svg,
+.blog-related-list svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.blog-detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 42px;
+  align-items: start;
+}
+
+.blog-detail-article {
+  min-width: 0;
+}
+
+.blog-detail-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  margin-bottom: 18px;
+  padding: 0 14px;
+  color: #155de8;
+  background: rgba(21, 93, 232, 0.1);
+  border: 1px solid rgba(21, 93, 232, 0.16);
+  border-radius: 999px;
+  font-family: var(--utility-font);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.blog-detail-article h1 {
+  max-width: 820px;
+  margin: 0 0 20px;
+  color: #071327;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 950;
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.blog-detail-lead {
+  max-width: 760px;
+  margin: 0 0 34px;
+  color: #475569;
+  font-size: 17px;
+  font-weight: 540;
+  line-height: 1.75;
+}
+
+.blog-detail-cover {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 38px;
+  border-radius: 24px;
+  background: #dbeafe;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+}
+
+.blog-detail-cover img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  object-fit: cover;
+}
+
+.blog-detail-section {
+  padding: 30px 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.blog-detail-section h2 {
+  margin: 0 0 14px;
+  color: #0f172a;
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.blog-detail-section p {
+  margin: 0;
+  color: #475569;
+  font-size: 16px;
+  font-weight: 520;
+  line-height: 1.82;
+}
+
+.blog-process-list {
+  display: grid;
+  gap: 16px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.blog-process-list li {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.blog-process-list li > span {
+  width: 9px;
+  height: 9px;
+  margin-top: 11px;
+  border-radius: 999px;
+  background: #155de8;
+  box-shadow: 0 0 0 5px rgba(21, 93, 232, 0.1);
+}
+
+.blog-process-list strong {
+  color: #0f172a;
+  font-weight: 850;
+}
+
+.blog-detail-sidebar {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 24px;
+}
+
+.blog-sidebar-card {
+  padding: 26px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.blog-sidebar-card h3 {
+  margin: 0 0 18px;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.blog-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.blog-category-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  color: #ffffff;
+  background: #155de8;
+  border-radius: 9px;
+  font-family: var(--utility-font);
+  font-size: 11px;
+  font-weight: 850;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.blog-category-list a:hover,
+.blog-category-list a:focus-visible {
+  background: #0f4acc;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.blog-category-list {
+  display: flex;
+  flex-direction: column; /* Öğeleri yan yana değil, alt alta dizer */
+  gap: 12px; /* Öğeler arası dikey boşluk */
+  max-width: 400px; /* Liste çok uzamasın diye genişliği sınırlayabilirsin (opsiyonel) */
+}
+
+.blog-category-list a {
+  display: flex; 
+  align-items: center;
+  justify-content: space-between; /* Yazıyı sola, oku (varsa) en sağa iter */
+  width: 100%; /* Satırı tam kaplaması için */
+  min-height: 40px;
+  padding: 8px 0; /* Sağ ve sol padding'i sıfırladık ki yazılar tam hizalı başlasın */
+  
+  color: #4b5563; /* Görseldeki gibi koyu gri/mavi tonu */
+  background: transparent; /* Mavi arka planı tamamen kaldırdık */
+  
+  font-family: var(--utility-font);
+  font-size: 16px; /* Görseldeki yazılar daha büyük, o yüzden 11px'den büyüttük */
+  font-weight: 700; /* Biraz daha okunabilir bir kalınlık */
+  text-decoration: none;
+  
+  transition: all 200ms ease;
+}
+
+.blog-category-list a:hover,
+.blog-category-list a:focus-visible {
+  color: #155de8; /* Üzerine gelince yazılar senin eski güzel mavi rengine dönsün */
+  background: transparent; 
+  transform: translateX(4px); /* Yukarı zıplamak yerine liste elemanı hafif sağa kaysın (çok şık durur) */
+  outline: none;
+}
+@media (max-width: 1020px) {
+  .blog-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-detail-sidebar {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .blog-detail-page {
+    padding-top: 16px;
+  }
+
+  .blog-detail-shell {
+    width: min(100% - 32px, 1120px);
+    margin-top: 34px;
+  }
+
+  .blog-detail-breadcrumbs {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .blog-detail-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-detail-article h1 {
+    font-size: clamp(36px, 12vw, 48px);
+  }
+
+  .blog-detail-cover {
+    border-radius: 18px;
+  }
+
+  .blog-detail-section {
+    padding: 24px 0;
+  }
+
+  .blog-sidebar-card {
+    padding: 22px;
+  }
+}
