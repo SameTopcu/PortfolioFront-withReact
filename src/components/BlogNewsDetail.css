@@ -85,9 +85,9 @@
   min-height: 30px;
   margin-bottom: 18px;
   padding: 0 14px;
-  color: #155de8;
-  background: rgba(21, 93, 232, 0.1);
-  border: 1px solid rgba(21, 93, 232, 0.16);
+  color: var(--blog-category-color, #155de8);
+  background: color-mix(in srgb, var(--blog-category-color, #155de8) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--blog-category-color, #155de8) 20%, transparent);
   border-radius: 999px;
   font-family: var(--utility-font);
   font-size: 11px;
@@ -131,6 +131,23 @@
   display: block;
   object-fit: cover;
 }
+
+.blog-detail-cover.is-placeholder { border: 0; }
+.blog-detail-cover-placeholder { aspect-ratio: 16 / 9; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding: clamp(28px, 6vw, 72px); color: #eff6ff; background: radial-gradient(circle at 78% 20%, rgba(96, 165, 250, .44), transparent 34%), linear-gradient(135deg, #172554, #1e3a8a 54%, #312e81); }
+.blog-detail-cover-placeholder span { font-family: var(--utility-font); font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+.blog-detail-cover-placeholder strong { max-width: 720px; font-size: clamp(30px, 5vw, 58px); line-height: 1; letter-spacing: -.04em; }
+.blog-detail-content > :first-child { margin-top: 0; }
+.blog-detail-content h3 { margin: 28px 0 12px; color: #0f172a; font-size: 24px; }
+.blog-detail-content ul, .blog-detail-content ol { display: grid; gap: 10px; margin: 18px 0 0; padding-left: 22px; color: #475569; line-height: 1.72; }
+.blog-detail-content blockquote { margin: 22px 0; padding: 16px 20px; color: #1e3a8a; background: #eff6ff; border-left: 4px solid #2563eb; }
+.blog-detail-content a { color: #155de8; font-weight: 750; }
+.blog-source-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 18px; padding: 18px 20px; background: #eff6ff; border: 1px solid #dbeafe; border-radius: 14px; }
+.blog-source-link > span { color: #64748b; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.blog-source-link a { display: inline-flex; align-items: center; gap: 8px; color: #155de8; font-weight: 850; text-decoration: none; }
+.blog-source-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
+.blog-detail-state { width: min(760px, calc(100% - 32px)); margin: 100px auto; padding: 40px; color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; }
+.blog-detail-state h1 { margin-top: 0; }
+.blog-detail-state a { color: #155de8; font-weight: 800; }
 
 .blog-detail-section {
   padding: 30px 0;
@@ -265,7 +282,7 @@
 
 .blog-category-list a:hover,
 .blog-category-list a:focus-visible {
-  color: #155de8; /* Üzerine gelince yazılar senin eski güzel mavi rengine dönsün */
+  color: var(--blog-category-color, #155de8);
   background: transparent; 
   transform: translateX(4px); /* Yukarı zıplamak yerine liste elemanı hafif sağa kaysın (çok şık durur) */
   outline: none;

@@ -2,24 +2,30 @@ import SkillsPanel from './SkillsPanel'
 import SocialLinks from './SocialLinks'
 import './Hero.css'
 
-export default function Hero() {
+const defaultHero = {
+  headline: 'Modern Full Stack Developer',
+  description: 'Hızlı, ölçeklenebilir ve kullanıcı dostu web uygulamaları tasarlıyor ve geliştiriyorum. Laravel, React, arayüz mühendisliği ve yapay zekâ destekli geliştirme üzerine çalışıyorum.',
+  primaryButton: { label: 'Projelerimi Gör', url: '#projelerim' },
+  secondaryButton: { label: 'İletişime Geç', url: '#iletisim' },
+}
+
+export default function Hero({ hero, skillGroups }) {
+  if (hero === null) return null
+
+  const content = hero === undefined ? defaultHero : hero
+
   return (
     <section className="hero-section" id="hakkimda">
       <div className="hero-copy">
-        <h1>
-          Modern Full Stack Developer
-        </h1>
-        <p>
-          I design and build fast, scalable and user-friendly web applications.
-          Passionate about Laravel, React, UI Engineering and AI-assisted development.
-        </p>
+        <h1>{content.headline}</h1>
+        <p>{content.description}</p>
         <div className="hero-actions">
-          <a className="hero-button primary" href="#projelerim">View Projects</a>
-          <a className="hero-button secondary" href="#iletisim">Contact Me</a>
+          <a className="hero-button primary" href={content.primaryButton.url}>{content.primaryButton.label}</a>
+          <a className="hero-button secondary" href={content.secondaryButton.url}>{content.secondaryButton.label}</a>
         </div>
-        <SocialLinks />
+        <SocialLinks links={content.socialLinks} />
       </div>
-      <SkillsPanel />
+      <SkillsPanel groups={skillGroups} />
     </section>
   )
 }

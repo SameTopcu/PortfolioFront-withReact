@@ -1,6 +1,11 @@
+import { useState } from 'react'
+import { submitContactMessage } from '../api/portfolioApi'
 import './ContactSection.css'
 
 export default function ContactSection() {
+  const [messageLength, setMessageLength] = useState(0)
+  const [formState, setFormState] = useState({ type: 'idle', message: '' })
+
   const socialLinks = [
     {
       label: 'LinkedIn',
@@ -32,15 +37,39 @@ export default function ContactSection() {
     },
   ]
 
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const payload = {
+      name: String(formData.get('name') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      subject: String(formData.get('subject') || '').trim(),
+      message: String(formData.get('message') || '').trim(),
+      website: String(formData.get('website') || '').trim(),
+    }
+
+    setFormState({ type: 'loading', message: 'Mesajınız yönetim paneline iletiliyor…' })
+    try {
+      const result = await submitContactMessage(payload)
+      form.reset()
+      setMessageLength(0)
+      setFormState({ type: 'success', message: result.message })
+    } catch (error) {
+      setFormState({ type: 'error', message: error.message })
+    }
+  }
+
   return (
     <section className="contact-section" id="iletisim">
       <div className="contact-inner">
         <div className="contact-left">
           <h2 className="contact-title">İletişim</h2>
           <p className="contact-desc">
-            Bir proje fikriniz mi var? Veya sadece merhaba demek ister misiniz?
-            Çekinmeyin, benimle iletişime geçin.
+            Bir proje fikriniz veya iş birliği teklifiniz varsa mesaj bırakın.
+            Bildiriminiz ve dönüş adresiniz doğrudan yönetim panelindeki gelen kutusuna ulaşır.
           </p>
+          
           <div className="contact-socials">
             {socialLinks.map((link) => (
               <a
@@ -57,14 +86,34 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <form className="contact-form">
-          <div className="contact-form-row">
-            <input type="text" name="name" placeholder="Ad Soyad" />
-            <input type="email" name="email" placeholder="E-posta" />
+        <form className="contact-form" onSubmit={handleSubmit} aria-busy={formState.type === 'loading'}>
+          <div className="contact-form-heading">
+            <span>Yeni bildirim</span>
+            <small>Tüm alanlar zorunludur</small>
           </div>
-          <input type="text" name="subject" placeholder="Konu" />
-          <textarea name="message" placeholder="Mesaj" rows="4" />
-          <button type="button">Mesaj Gönder</button>
+          <div className="contact-form-row">
+            <label><span>Ad soyad</span><input type="text" name="name" placeholder="Adınızı yazın" minLength="2" maxLength="100" autoComplete="name" required /></label>
+            <label><span>E-posta</span><input type="email" name="email" placeholder="ornek@adres.com" maxLength="190" autoComplete="email" required /></label>
+          </div>
+          <label><span>Konu</span><input type="text" name="subject" placeholder="Mesajınızın konusu" minLength="3" maxLength="160" required /></label>
+          <label className="contact-message-field">
+            <span>Mesaj</span>
+            <textarea name="message" placeholder="Projenizi veya görüşmek istediğiniz konuyu anlatın…" rows="6" minLength="10" maxLength="5000" onChange={(event) => setMessageLength(event.target.value.length)} required />
+            <small>{messageLength} / 5000</small>
+          </label>
+          <label className="contact-honeypot" aria-hidden="true">
+            Web sitesi
+            <input type="text" name="website" tabIndex="-1" autoComplete="off" />
+          </label>
+          <div className="contact-form-footer">
+            <p className={`contact-form-status is-${formState.type}`} role={formState.type === 'error' ? 'alert' : 'status'} aria-live="polite">
+              {formState.message}
+            </p>
+            <button type="submit" disabled={formState.type === 'loading'}>
+              <span>{formState.type === 'loading' ? 'Gönderiliyor…' : 'Bildirimi Gönder'}</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-5-7-2Z" /><path d="m12 14 7-9" /></svg>
+            </button>
+          </div>
         </form>
       </div>
     </section>
