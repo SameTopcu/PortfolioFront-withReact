@@ -3,6 +3,7 @@ import { getProject } from "../api/portfolioApi";
 import DetailIcon from "../components/icons/DetailIcon";
 import Header from "../components/Header";
 import ProjectIcon from "../components/icons/ProjectIcon";
+import SiteFooter from "../components/SiteFooter";
 import "./ProjectDetailPage.css";
 
 function RichContent({ html }) {
@@ -246,6 +247,7 @@ export default function ProjectDetailPage({ slug, header }) {
           <p>{error}</p>
           <a href="/projeler">Tüm projelere dön</a>
         </section>
+        <SiteFooter />
       </main>
     );
   if (!project)
@@ -255,6 +257,7 @@ export default function ProjectDetailPage({ slug, header }) {
         <section className="detail-state">
           <p>Proje yükleniyor…</p>
         </section>
+        <SiteFooter />
       </main>
     );
 
@@ -506,21 +509,8 @@ export default function ProjectDetailPage({ slug, header }) {
             </section>
           )}
 
-        <footer className="detail-cta-footer" id="contact">
-          <h2>Birlikte çalışalım.</h2>
-          {project.contactEmail ? (
-            <a href={`mailto:${project.contactEmail}`}>İletişime Geç</a>
-          ) : (
-            <span className="detail-contact-disabled">
-              İletişim adresi eklenmemiş
-            </span>
-          )}
-          <p>
-            © {new Date().getFullYear()} Portfolyo. Özenle tasarlandı ve
-            geliştirildi.
-          </p>
-        </footer>
       </div>
+      <SiteFooter />
     </main>
   );
 }

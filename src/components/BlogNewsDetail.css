@@ -2,7 +2,9 @@
 
 .blog-detail-page {
   min-height: 100svh;
-  padding: 24px 0 80px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 0;
   color: #0f172a;
   background:
     radial-gradient(circle at 86% 8%, rgba(37, 99, 235, 0.12), transparent 28%),
@@ -11,8 +13,9 @@
 }
 
 .blog-detail-shell {
+  flex: 1;
   width: min(1120px, calc(100% - 48px));
-  margin: 56px auto 0;
+  margin: 56px auto 80px;
 }
 
 .blog-detail-breadcrumbs {
@@ -145,7 +148,7 @@
 .blog-source-link > span { color: #64748b; font-size: 12px; font-weight: 800; text-transform: uppercase; }
 .blog-source-link a { display: inline-flex; align-items: center; gap: 8px; color: #155de8; font-weight: 850; text-decoration: none; }
 .blog-source-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
-.blog-detail-state { width: min(760px, calc(100% - 32px)); margin: 100px auto; padding: 40px; color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; }
+.blog-detail-state { width: min(760px, calc(100% - 32px)); flex: 1; margin: 100px auto; padding: 40px; color: #0f172a; background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; }
 .blog-detail-state h1 { margin-top: 0; }
 .blog-detail-state a { color: #155de8; font-weight: 800; }
 

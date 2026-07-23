@@ -17,7 +17,7 @@ export const skillGroups = [
     ],
   },
   {
-    title: 'Tools & AI',
+    title: 'Araçlar ve Yapay Zekâ',
     items: [
       { name: 'OpenAI', icon: 'openai' },
       { name: 'Claude', icon: 'claude' },

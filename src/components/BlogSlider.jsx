@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { getBlogPosts } from '../api/portfolioApi'
 import { blogSlides } from '../data/portfolioData'
+import {
+  ScrollAnimateContainer,
+  ScrollAnimateItem,
+} from './motion/ScrollAnimateContainer'
 import './BlogSlider.css'
 
 const dateFormatter = new Intl.DateTimeFormat('tr-TR', {
@@ -57,19 +61,32 @@ export default function BlogSlider() {
           <p className="blog-section-badge">{resolved.eyebrow}</p>
           <h2 className="blog-section-title">{resolved.heading}</h2>
         </div>
-        <div className="blog-nav-arrows">
-          <button className="blog-arrow-btn" type="button" onClick={goToPrevious} aria-label="Önceki yazı">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
-          </button>
-          <button className="blog-arrow-btn" type="button" onClick={goToNext} aria-label="Sonraki yazı">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
-          </button>
+        <div className="blog-section-actions">
+          <a className="blog-view-all" href="/haberler">Hepsini görüntüle</a>
+          <div className="blog-nav-arrows">
+            <button className="blog-arrow-btn" type="button" onClick={goToPrevious} aria-label="Önceki yazı">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+            </button>
+            <button className="blog-arrow-btn" type="button" onClick={goToNext} aria-label="Sonraki yazı">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div className="blog-cards-track" aria-live="polite">
+      <ScrollAnimateContainer
+        className="blog-cards-track"
+        aria-live="polite"
+        stagger={0.1}
+      >
         {slides.map((slide, index) => (
-          <article className={`blog-card ${index === visibleActiveSlide ? 'blog-card--active' : ''}`} style={{ '--blog-category-color': slide.categoryColor || '#3b82f6' }} key={slide.id ?? slide.slug ?? slide.title}>
+          <ScrollAnimateItem
+            as="article"
+            className={`blog-card ${index === visibleActiveSlide ? 'blog-card--active' : ''}`}
+            style={{ '--blog-category-color': slide.categoryColor || '#3b82f6' }}
+            whileHover={{ y: -8 }}
+            key={slide.id ?? slide.slug ?? slide.title}
+          >
             <div className="blog-card-image">
               {(slide.coverUrl || slide.image) ? (
                 <img src={slide.coverUrl || slide.image} alt={slide.coverAlt || ''} loading="lazy" />
@@ -90,9 +107,9 @@ export default function BlogSlider() {
                 <a className="blog-card-link" href={slide.detailUrl}>Devamını Oku<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
               </div>
             </div>
-          </article>
+          </ScrollAnimateItem>
         ))}
-      </div>
+      </ScrollAnimateContainer>
 
       <div className="blog-dots" aria-label="Blog slaytları">
         {slides.map((item, index) => (

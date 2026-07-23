@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { getProjects } from '../api/portfolioApi'
 import ProjectIcon from './icons/ProjectIcon'
+import {
+  ScrollAnimateContainer,
+  ScrollAnimateItem,
+} from './motion/ScrollAnimateContainer'
 import './Projects.css'
 
 const visibleProjectCount = 4
@@ -8,7 +12,12 @@ const slideIntervalMs = 5000
 
 export function ProjectCard({ project }) {
   return (
-    <article className="project-card" style={{ '--project-accent': project.accentColor || '#2563eb' }}>
+    <ScrollAnimateItem
+      as="article"
+      className="project-card"
+      style={{ '--project-accent': project.accentColor || '#2563eb' }}
+      whileHover={{ y: -8 }}
+    >
       <div className="project-preview">
         {project.coverUrl && <img className="project-cover-image" src={project.coverUrl} alt={project.coverAlt || project.title} />}
         <div className="project-preview-top"><span>{project.badge || 'Proje'}</span><span>{project.year || '—'}</span></div>
@@ -21,7 +30,7 @@ export function ProjectCard({ project }) {
         <p>{project.summary}</p>
         <a href={project.detailUrl}>Devamını gör</a>
       </div>
-    </article>
+    </ScrollAnimateItem>
   )
 }
 
@@ -59,11 +68,15 @@ export default function Projects() {
 
   return (
     <section className="projects-section" id="projelerim">
-      <div className="section-heading"><div><p>seçili işler</p><h2>Projeler</h2></div><a href="/projeler">Tümünü gör</a></div>
+      <div className="section-heading"><div><p>seçili işler</p><h2>Projeler</h2></div><a href="/projeler">Hepsini görüntüle</a></div>
       <div className="projects-carousel" aria-label="Projeler listesi">
-        <div className="projects-track" style={{ transform: `translateX(calc(-${activeIndex} * var(--project-slide-step)))`, transition: isResetting ? 'none' : undefined }}>
+        <ScrollAnimateContainer
+          className="projects-track"
+          stagger={0.1}
+          style={{ transform: `translateX(calc(-${activeIndex} * var(--project-slide-step)))`, transition: isResetting ? 'none' : undefined }}
+        >
           {loopingProjects.map((project, index) => <ProjectCard project={project} key={`${project.id}-${index}`} />)}
-        </div>
+        </ScrollAnimateContainer>
       </div>
     </section>
   )

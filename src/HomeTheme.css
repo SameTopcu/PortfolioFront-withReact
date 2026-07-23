@@ -1,0 +1,300 @@
+/*
+ * Homepage colour system
+ * A single calm canvas replaces the independent light/dark section bands.
+ * Component-specific colour remains inside cards, imagery and interactions.
+ */
+
+.portfolio-page {
+  --home-canvas: #f6f9fe;
+  --home-surface: #ffffff;
+  --home-surface-soft: #eef4fc;
+  --home-ink: #10213e;
+  --home-muted: #60708a;
+  --home-line: #dbe6f4;
+  --home-accent: #2563eb;
+  --home-shadow: 0 22px 56px rgba(38, 73, 128, 0.1);
+
+  color: var(--home-ink);
+  background: var(--home-canvas);
+}
+
+.portfolio-page .page-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--home-canvas);
+}
+
+.portfolio-page .hero-section,
+.portfolio-page .projects-section,
+.portfolio-page .experience-section,
+.portfolio-page .blog-slider-section,
+.portfolio-page .contact-section,
+.portfolio-page .site-footer {
+  background: transparent;
+}
+
+.portfolio-page .projects-section,
+.portfolio-page .experience-section,
+.portfolio-page .blog-slider-section,
+.portfolio-page .contact-section,
+.portfolio-page .site-footer {
+  border-top: 1px solid var(--home-line);
+}
+
+/* Hero and projects now share the same canvas. */
+.portfolio-page .hero-section::before {
+  opacity: 0.16;
+}
+
+.portfolio-page .hero-section::after {
+  opacity: 0.12;
+}
+
+.portfolio-page .hero-eyebrow,
+.portfolio-page .hero-button.secondary,
+.portfolio-page .section-heading > a {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--home-line);
+  box-shadow: 0 12px 30px rgba(38, 73, 128, 0.07);
+}
+
+.portfolio-page .projects-carousel,
+.portfolio-page .projects-track {
+  background: transparent;
+}
+
+.portfolio-page .project-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: var(--home-line);
+  box-shadow: var(--home-shadow);
+}
+
+/* Experience timeline: same visual language, no dark colour island. */
+.portfolio-page .experience-section::before {
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.055) 1px, transparent 1px);
+}
+
+.portfolio-page .experience-intro h2,
+.portfolio-page .experience-card h3 {
+  color: var(--home-ink);
+}
+
+.portfolio-page .experience-intro span,
+.portfolio-page .experience-card .company,
+.portfolio-page .experience-meta span,
+.portfolio-page .experience-bullets {
+  color: var(--home-muted);
+}
+
+.portfolio-page .experience-description {
+  color: #465875;
+}
+
+.portfolio-page .experience-intro p {
+  color: #1d4ed8;
+  background: #eaf2ff;
+  border-color: #cfdef8;
+  box-shadow: none;
+}
+
+.portfolio-page .experience-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: var(--home-line);
+  box-shadow:
+    0 18px 50px rgba(38, 73, 128, 0.09),
+    inset 0 1px 0 #ffffff;
+}
+
+.portfolio-page .experience-card:hover {
+  border-color: #b9cef0;
+  box-shadow:
+    0 26px 64px rgba(38, 73, 128, 0.14),
+    0 0 0 1px rgba(37, 99, 235, 0.04);
+}
+
+.portfolio-page .experience-node {
+  border-color: var(--home-canvas);
+}
+
+.portfolio-page .experience-logo {
+  color: #5e718d;
+  background: #f7faff;
+  border-color: var(--home-line);
+  box-shadow: 0 6px 18px rgba(38, 73, 128, 0.08);
+}
+
+.portfolio-page .experience-logo span {
+  color: var(--home-accent);
+}
+
+.portfolio-page .tech-tag {
+  color: #2459b8;
+  background: #edf4ff;
+  border-color: #d4e3fa;
+}
+
+.portfolio-page .tech-tag:hover {
+  color: #123f91;
+  background: #e1edff;
+  border-color: #b9d0f4;
+}
+
+.portfolio-page .orbit-ring {
+  border-color: rgba(37, 99, 235, 0.16);
+}
+
+.portfolio-page .orbit-ring:nth-child(2) {
+  border-color: rgba(124, 58, 237, 0.14);
+}
+
+/* Blog keeps its editorial layout while returning to a light surface. */
+.portfolio-page .blog-slider-section::before {
+  opacity: 0.42;
+  background-image: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.13) 1px,
+    transparent 1px
+  );
+}
+
+.portfolio-page .blog-section-title,
+.portfolio-page .blog-card-title {
+  color: var(--home-ink);
+}
+
+.portfolio-page .blog-section-badge {
+  color: #1d4ed8;
+  background: #eaf2ff;
+  border-color: #cfdef8;
+}
+
+.portfolio-page .blog-arrow-btn {
+  color: #51647f;
+  background: var(--home-surface);
+  border-color: var(--home-line);
+  box-shadow: 0 10px 26px rgba(38, 73, 128, 0.08);
+}
+
+.portfolio-page .blog-view-all {
+  color: var(--home-ink);
+  background: var(--home-surface);
+  border-color: var(--home-line);
+  box-shadow: 0 10px 26px rgba(38, 73, 128, 0.08);
+}
+
+.portfolio-page .blog-view-all:hover,
+.portfolio-page .blog-view-all:focus-visible {
+  color: var(--home-accent);
+  background: #edf4ff;
+  border-color: #b9cef0;
+}
+
+.portfolio-page .blog-arrow-btn:hover,
+.portfolio-page .blog-arrow-btn:focus-visible {
+  color: var(--home-accent);
+  background: #edf4ff;
+  border-color: #b9cef0;
+}
+
+.portfolio-page .blog-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--home-line);
+  box-shadow: var(--home-shadow);
+}
+
+.portfolio-page .blog-card:hover,
+.portfolio-page .blog-card--active {
+  border-color: #bfd2ef;
+  box-shadow: 0 26px 64px rgba(38, 73, 128, 0.14);
+}
+
+.portfolio-page .blog-card-text {
+  color: var(--home-muted);
+}
+
+.portfolio-page .blog-card-footer {
+  border-color: var(--home-line);
+}
+
+.portfolio-page .blog-card-date,
+.portfolio-page .blog-card-read-time {
+  color: #74839a;
+}
+
+.portfolio-page .blog-card-link,
+.portfolio-page .blog-card-link:hover {
+  color: var(--home-accent);
+}
+
+.portfolio-page .blog-dots button {
+  background: #c8d6e9;
+}
+
+.portfolio-page .blog-dots button:hover {
+  background: #9eb5d4;
+}
+
+/* Contact form becomes a bright, focused work surface. */
+.portfolio-page .contact-section::before {
+  height: 1px;
+  background: var(--home-line);
+  opacity: 1;
+}
+
+.portfolio-page .contact-title,
+.portfolio-page .contact-channel-note strong,
+.portfolio-page .contact-form-heading span {
+  color: var(--home-ink);
+}
+
+.portfolio-page .contact-desc,
+.portfolio-page .contact-channel-note small,
+.portfolio-page .contact-form-status {
+  color: var(--home-muted);
+}
+
+.portfolio-page .contact-channel-note {
+  color: #425675;
+  background: rgba(255, 255, 255, 0.72);
+  border-color: var(--home-line);
+}
+
+.portfolio-page .contact-social-icon {
+  color: #526985;
+  background: var(--home-surface);
+  border-color: var(--home-line);
+}
+
+.portfolio-page .contact-form {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--home-line);
+  box-shadow: var(--home-shadow);
+}
+
+.portfolio-page .contact-form label {
+  color: #425675;
+}
+
+.portfolio-page .contact-form input,
+.portfolio-page .contact-form textarea {
+  color: var(--home-ink);
+  background: #f7faff;
+  border-color: #d4e1f1;
+}
+
+.portfolio-page .contact-form input::placeholder,
+.portfolio-page .contact-form textarea::placeholder,
+.portfolio-page .contact-form-heading small,
+.portfolio-page .contact-message-field > small {
+  color: #8190a5;
+}
+
+@media (max-width: 720px) {
+  .portfolio-page .contact-section {
+    background: transparent;
+  }
+}

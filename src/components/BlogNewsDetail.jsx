@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getBlogPost } from '../api/portfolioApi'
 import { blogNewsDetail } from '../data/portfolioData'
 import Header from './Header'
+import SiteFooter from './SiteFooter'
 import './BlogNewsDetail.css'
 
 const dateFormatter = new Intl.DateTimeFormat('tr-TR', { day: '2-digit', month: 'long', year: 'numeric' })
@@ -46,8 +47,8 @@ export default function BlogNewsDetail({ slug, header }) {
     return () => controller.abort()
   }, [slug])
 
-  if (error) return <main className="blog-detail-page"><Header {...header} /><section className="blog-detail-state"><h1>Yazı bulunamadı</h1><p>{error}</p><a href="/#haberler-blog">Haberler ve blog bölümüne dön</a></section></main>
-  if (!post) return <main className="blog-detail-page"><Header {...header} /><section className="blog-detail-state"><p>Yazı yükleniyor…</p></section></main>
+  if (error) return <main className="blog-detail-page"><Header {...header} /><section className="blog-detail-state"><h1>Yazı bulunamadı</h1><p>{error}</p><a href="/#haberler-blog">Haberler ve blog bölümüne dön</a></section><SiteFooter /></main>
+  if (!post) return <main className="blog-detail-page"><Header {...header} /><section className="blog-detail-state"><p>Yazı yükleniyor…</p></section><SiteFooter /></main>
 
   return (
     <main className="blog-detail-page">
@@ -80,6 +81,7 @@ export default function BlogNewsDetail({ slug, header }) {
           </aside>
         </div>
       </div>
+      <SiteFooter />
     </main>
   )
 }

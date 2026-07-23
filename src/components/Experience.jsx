@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getExperiences } from '../api/portfolioApi'
+import {
+  ScrollAnimateContainer,
+  ScrollAnimateItem,
+} from './motion/ScrollAnimateContainer'
 import './Experience.css'
 
 const dateFormatter = new Intl.DateTimeFormat('tr-TR', { month: 'short', year: 'numeric' })
@@ -53,10 +57,19 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="experience-board" aria-label="Tecrübe zaman çizelgesi">
+        <ScrollAnimateContainer
+          className="experience-board"
+          aria-label="Tecrübe zaman çizelgesi"
+          stagger={0.1}
+        >
           <div className="signal-line" aria-hidden="true" />
           {experienceSection.items.map((experience, index) => (
-            <article className="experience-card" key={experience.id}>
+            <ScrollAnimateItem
+              as="article"
+              className="experience-card"
+              whileHover={{ x: 6, y: -2 }}
+              key={experience.id}
+            >
               <div className="experience-node" aria-hidden="true">
                 <span className="node-number">{String(index + 1).padStart(2, '0')}</span>
                 <span className="node-dot" />
@@ -94,9 +107,9 @@ export default function Experience() {
                   )}
                 </div>
               </div>
-            </article>
+            </ScrollAnimateItem>
           ))}
-        </div>
+        </ScrollAnimateContainer>
       </div>
     </section>
   )

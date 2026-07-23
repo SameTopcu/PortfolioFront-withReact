@@ -19,6 +19,8 @@
 html {
   min-width: 320px;
   background: #ffffff;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -30,4 +32,10 @@ body {
 button,
 a {
   font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

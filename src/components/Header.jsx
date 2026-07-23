@@ -1,4 +1,7 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { navItems } from '../data/portfolioData'
+import { normalizeInternalHref } from '../utils/navigation'
+import { headerVariants } from './heroMotion'
 import './Header.css'
 
 function Logo({ site }) {
@@ -6,7 +9,7 @@ function Logo({ site }) {
 
   return (
     <a className="logo" href="/" aria-label="Ana sayfa">
-      <span>{site?.brandName || 'LOGO'}</span>
+      <span>{site?.brandName || 'Samet Topcu'}</span>
       {site?.logoUrl ? (
         <img className="logo-image" src={site.logoUrl} alt="" />
       ) : (
@@ -21,6 +24,7 @@ function Logo({ site }) {
 }
 
 export default function Header({ site, navigation }) {
+  const shouldReduceMotion = useReducedMotion()
   const items = navigation === undefined
     ? navItems.map((label) => ({
         label,
@@ -29,11 +33,18 @@ export default function Header({ site, navigation }) {
     : navigation
 
   return (
-    <header className="site-header">
+    <motion.header
+      className="site-header"
+      variants={headerVariants}
+      initial={shouldReduceMotion ? false : 'hidden'}
+      animate="visible"
+    >
       <Logo site={site} />
       <nav className="site-nav" aria-label="Ana menü">
         {items.map((item) => {
-          const href = item.url.startsWith('#') && window.location.pathname !== '/' ? `/${item.url}` : item.url
+          const href = normalizeInternalHref(item.url, {
+            hashFromHome: window.location.pathname !== '/',
+          })
           return <a href={href} key={item.id || item.label}>{item.label}</a>
         })}
       </nav>
@@ -42,6 +53,6 @@ export default function Header({ site, navigation }) {
           <path d="m20 20-4.8-4.8m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" />
         </svg>
       </button>
-    </header>
+    </motion.header>
   )
 }

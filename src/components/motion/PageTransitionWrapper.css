@@ -1,0 +1,10 @@
+.page-transition-shell {
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-shell {
+    transform: none !important;
+  }
+}

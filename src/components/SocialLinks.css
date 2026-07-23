@@ -2,83 +2,78 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
+  gap: 0;
+  margin-top: 30px;
 }
 
 .social-links a {
+  position: relative;
+  min-height: 38px;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  min-height: 42px;
-  padding: 0 12px 0 8px;
-  color: #173763;
-  background: rgba(255, 255, 255, 0.66);
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 999px;
-  box-shadow: 0 10px 28px rgba(60, 89, 145, 0.08);
+  gap: 10px;
+  padding: 0 26px;
+  color: #111a31;
   font-family: var(--utility-font);
-  font-size: 12px;
-  font-weight: 850;
+  font-size: 14px;
+  font-weight: 800;
   text-decoration: none;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    color 180ms ease;
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.social-links a:first-child {
+  padding-left: 0;
+}
+
+.social-links a:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 1px;
+  height: 30px;
+  background: #cdd8e8;
 }
 
 .social-links a:hover,
 .social-links a:focus-visible {
-  color: #1d4ed8;
-  transform: scale(1.05);
-  box-shadow:
-    0 16px 32px rgba(38, 96, 214, 0.16),
-    0 0 0 5px rgba(59, 130, 246, 0.11);
+  color: #2563eb;
   outline: none;
 }
 
-.social-icon {
-  width: 32px;
-  height: 32px;
+.social-links .social-icon {
+  width: 28px;
+  height: 28px;
   display: inline-grid;
   place-items: center;
-  border-radius: 999px;
-  color: #ffffff;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: currentColor;
+  background: transparent;
+  border-radius: 0;
 }
 
-.social-icon svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.1;
+.social-links .social-icon svg {
+  width: 23px;
+  height: 23px;
 }
 
-.github {
-  color: #ffffff;
-  background: #050505;
+@media (max-width: 520px) {
+  .social-links {
+    gap: 10px 18px;
+  }
+
+  .social-links a,
+  .social-links a:first-child {
+    padding: 0;
+  }
+
+  .social-links a::after {
+    content: none !important;
+  }
 }
 
-.linkedin {
-  color: #ffffff;
-  background: #2873c9;
-  font-size: 13px;
-}
-
-.download {
-  color: #ffffff;
-  background: linear-gradient(135deg, #2f8fff, #82bfff);
-}
-
-.download svg {
-  width: 17px;
-  height: 17px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
+@media (prefers-reduced-motion: reduce) {
+  .social-links a {
+    transition: none;
+  }
 }

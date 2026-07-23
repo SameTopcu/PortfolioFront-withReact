@@ -61,6 +61,16 @@ export async function getBlogPost(slug, { signal } = {}) {
   return payload.data
 }
 
+export async function getFooterContent({ signal } = {}) {
+  const response = await fetch(`${apiBaseUrl}/footer`, {
+    signal,
+    headers: { Accept: 'application/json' },
+  })
+  if (!response.ok) throw new Error('Footer içeriği alınamadı.')
+  const payload = await response.json()
+  return payload.data
+}
+
 export async function submitContactMessage(contactMessage) {
   const response = await fetch(`${apiBaseUrl}/contact-messages`, {
     method: 'POST',

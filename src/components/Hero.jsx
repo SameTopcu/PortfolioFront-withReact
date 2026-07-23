@@ -1,5 +1,11 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import SkillsPanel from './SkillsPanel'
 import SocialLinks from './SocialLinks'
+import {
+  heroButtonGroupVariants,
+  heroContentVariants,
+  heroItemVariants,
+} from './heroMotion'
 import './Hero.css'
 
 const defaultHero = {
@@ -9,23 +15,74 @@ const defaultHero = {
   secondaryButton: { label: 'İletişime Geç', url: '#iletisim' },
 }
 
+function HeroHeadline({ headline }) {
+  const words = String(headline || defaultHero.headline).trim().split(/\s+/)
+  const accentWord = words.pop()
+
+  return (
+    <>
+      <span className="hero-headline-main">{words.join(' ')}</span>
+      <span className="hero-headline-accent">{accentWord}</span>
+    </>
+  )
+}
+
 export default function Hero({ hero, skillGroups }) {
+  const shouldReduceMotion = useReducedMotion()
+
   if (hero === null) return null
 
   const content = hero === undefined ? defaultHero : hero
 
   return (
     <section className="hero-section" id="hakkimda">
-      <div className="hero-copy">
-        <h1>{content.headline}</h1>
-        <p>{content.description}</p>
-        <div className="hero-actions">
-          <a className="hero-button primary" href={content.primaryButton.url}>{content.primaryButton.label}</a>
-          <a className="hero-button secondary" href={content.secondaryButton.url}>{content.secondaryButton.label}</a>
-        </div>
-        <SocialLinks links={content.socialLinks} />
+      <div className="hero-background" aria-hidden="true">
+        <span className="hero-orb hero-orb-blue" />
+        <span className="hero-orb hero-orb-violet" />
+        <span className="hero-orb hero-orb-cyan" />
+        <span className="hero-motion-grid" />
       </div>
-      <SkillsPanel groups={skillGroups} />
+
+      <motion.div
+        className="hero-copy"
+        variants={heroContentVariants}
+        initial={shouldReduceMotion ? false : 'hidden'}
+        animate="visible"
+      >
+        <motion.h1 variants={heroItemVariants}>
+          <HeroHeadline headline={content.headline} />
+        </motion.h1>
+        <motion.p variants={heroItemVariants}>{content.description}</motion.p>
+        <motion.div className="hero-actions" variants={heroButtonGroupVariants}>
+          <motion.a
+            className="hero-button primary"
+            href={content.primaryButton.url}
+            variants={heroItemVariants}
+            whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.02 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+          >
+            {content.primaryButton.label}
+            <span className="hero-button-arrow" aria-hidden="true">→</span>
+          </motion.a>
+          <motion.a
+            className="hero-button secondary"
+            href={content.secondaryButton.url}
+            variants={heroItemVariants}
+            whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.02 }}
+            whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+          >
+            {content.secondaryButton.label}
+          </motion.a>
+        </motion.div>
+        <SocialLinks
+          links={content.socialLinks}
+          reducedMotion={shouldReduceMotion}
+        />
+      </motion.div>
+      <SkillsPanel
+        groups={skillGroups}
+        reducedMotion={shouldReduceMotion}
+      />
     </section>
   )
 }
