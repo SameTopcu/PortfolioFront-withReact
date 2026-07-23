@@ -135,3 +135,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.skill-logo-icon img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}

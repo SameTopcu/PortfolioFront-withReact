@@ -1,22 +1,51 @@
-import { experiences } from '../data/portfolioData'
+import { useEffect, useState } from 'react'
+import { getExperiences } from '../api/portfolioApi'
 import './Experience.css'
 
+const dateFormatter = new Intl.DateTimeFormat('tr-TR', { month: 'short', year: 'numeric' })
+
+function formatExperiencePeriod(experience) {
+  if (!experience.startDate) return ''
+  const start = dateFormatter.format(new Date(`${experience.startDate}T00:00:00`))
+  if (experience.isCurrent) return `${start} – Günümüz`
+  if (!experience.endDate) return start
+  const end = dateFormatter.format(new Date(`${experience.endDate}T00:00:00`))
+  return `${start} – ${end}`
+}
+
 export default function Experience() {
-  const techTags = [
-    ['Cisco', 'VLAN', 'TCP/IP', 'Firewall'],
-    ['SQL', 'Oracle', 'PostgreSQL', 'Backup'],
-    ['ATM Software', 'Analytics', 'REST API', 'Reporting'],
-  ]
+  const [experienceSection, setExperienceSection] = useState(undefined)
+
+  useEffect(() => {
+    const controller = new AbortController()
+    getExperiences({ signal: controller.signal })
+      .then(setExperienceSection)
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          console.warn('Tecrübeler API üzerinden alınamadı.', error)
+          setExperienceSection(null)
+        }
+      })
+
+    return () => controller.abort()
+  }, [])
+
+  useEffect(() => {
+    if (!experienceSection || window.location.hash !== '#tecrubeler') return
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('tecrubeler')?.scrollIntoView({ block: 'start' })
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [experienceSection])
+
+  if (!experienceSection || experienceSection.items.length === 0) return null
 
   return (
     <section className="experience-section" id="tecrubeler">
       <div className="experience-shell">
         <div className="experience-intro">
-          <h2>Tecrübelerim</h2>
-          <span>
-            Ağ altyapısı, veritabanı yönetimi ve dijital kanal operasyonlarında
-            sahada edinilmiş teknik pratikler.
-          </span>
+          <h2>{experienceSection.heading}</h2>
+          {experienceSection.description && <span>{experienceSection.description}</span>}
           <div className="experience-orbit" aria-hidden="true">
             <div className="orbit-ring" />
             <div className="orbit-ring" />
@@ -24,57 +53,49 @@ export default function Experience() {
           </div>
         </div>
 
-        <div className="experience-board" aria-label="Experience timeline">
+        <div className="experience-board" aria-label="Tecrübe zaman çizelgesi">
           <div className="signal-line" aria-hidden="true" />
-          {experiences.map((experience, index) => {
-            const bullets = [
-              experience.description,
-              index === 0
-                ? 'Saha kurulumlarında teknik dokümantasyon ve sorun analizi süreçlerine destek verdim.'
-                : 'Operasyon ekipleriyle birlikte raporlama, takip ve kalite kontrol akışlarında yer aldım.',
-              index === 2
-                ? 'Kullanım verilerini yorumlayarak performans raporlarını daha okunabilir hale getirdim.'
-                : 'Günlük iş akışlarında ekip içi iletişim ve standart takiplerini güçlendirdim.',
-            ]
-
-            return (
-              <article className="experience-card" key={`${experience.company}-${experience.role}`}>
-                <div className="experience-node" aria-hidden="true">
-                  <span className="node-number">{String(index + 1).padStart(2, '0')}</span>
-                  <span className="node-dot" />
+          {experienceSection.items.map((experience, index) => (
+            <article className="experience-card" key={experience.id}>
+              <div className="experience-node" aria-hidden="true">
+                <span className="node-number">{String(index + 1).padStart(2, '0')}</span>
+                <span className="node-dot" />
+              </div>
+              <div className="experience-card-main">
+                <div className={`experience-logo ${experience.logoUrl ? 'has-image' : ''}`} aria-hidden="true">
+                  {experience.logoUrl
+                    ? <img src={experience.logoUrl} alt="" />
+                    : <span>{experience.company.slice(0, 1).toLocaleUpperCase('tr-TR')}</span>}
+                  {experience.focus && <small>{experience.focus}</small>}
                 </div>
-                <div className="experience-card-main">
-                  <div className="experience-logo" aria-hidden="true">
-                    <span>{experience.company.slice(0, 1)}</span>
-                    <small>{experience.focus}</small>
-                  </div>
-                  <div className="experience-card-content">
-                    <div className="experience-card-header">
-                      <div>
-                        <h3>{experience.role}</h3>
-                        <p className="company">{experience.company}</p>
-                      </div>
-                      <div className="experience-meta" aria-label="Experience details">
-                        <span>{index === 0 ? '2024' : '2025'}</span>
-                        <span>{index === 0 ? 'Istanbul, TR' : 'Ankara, TR'}</span>
-                      </div>
+                <div className="experience-card-content">
+                  <div className="experience-card-header">
+                    <div>
+                      <h3>{experience.role}</h3>
+                      <p className="company">{experience.company}</p>
                     </div>
-                    <p className="experience-description">{experience.description}</p>
+                    {(formatExperiencePeriod(experience) || experience.location) && (
+                      <div className="experience-meta" aria-label="Tecrübe ayrıntıları">
+                        {formatExperiencePeriod(experience) && <span>{formatExperiencePeriod(experience)}</span>}
+                        {experience.location && <span>{experience.location}</span>}
+                      </div>
+                    )}
+                  </div>
+                  <p className="experience-description">{experience.description}</p>
+                  {experience.bullets.length > 0 && (
                     <ul className="experience-bullets">
-                      {bullets.slice(1).map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
+                      {experience.bullets.map((item) => <li key={item}>{item}</li>)}
                     </ul>
+                  )}
+                  {experience.tags.length > 0 && (
                     <div className="experience-tags">
-                      {techTags[index].map((tag) => (
-                        <span className="tech-tag" key={tag}>{tag}</span>
-                      ))}
+                      {experience.tags.map((tag) => <span className="tech-tag" key={tag}>{tag}</span>)}
                     </div>
-                  </div>
+                  )}
                 </div>
-              </article>
-            )
-          })}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

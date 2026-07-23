@@ -267,6 +267,18 @@
   line-height: 1;
 }
 
+.experience-logo img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+  border-radius: 7px;
+}
+
+.experience-logo.has-image {
+  padding: 5px;
+}
+
 .experience-logo small {
   max-width: 42px;
   color: #64748b;

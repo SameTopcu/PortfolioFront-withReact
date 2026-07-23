@@ -54,6 +54,14 @@
   stroke-width: 2.4;
 }
 
+.logo-image {
+  width: 26px;
+  height: 26px;
+  display: block;
+  object-fit: contain;
+  border-radius: 7px;
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -119,14 +127,18 @@
   background: #f6f9ff;
   border: 1px solid #dce8fb;
   border-radius: 10px;
-  cursor: pointer;
+  cursor: not-allowed;
 }
 
-.search-button:hover,
-.search-button:focus-visible {
+.search-button:not(:disabled):hover,
+.search-button:not(:disabled):focus-visible {
   color: #2369ff;
   background: #eef5ff;
   outline: none;
+}
+
+.search-button:disabled {
+  opacity: 0.82;
 }
 
 .search-button svg {

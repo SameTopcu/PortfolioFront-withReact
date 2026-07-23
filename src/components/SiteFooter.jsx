@@ -23,8 +23,8 @@ export default function SiteFooter() {
           <nav className="footer-links" aria-label="Footer navigation">
             <a href="#hakkimda">Hakkımda</a>
             <a href="#projeler">Projeler</a>
-            <a href="#tecrube">Tecrübe</a>
-            <a href="#blog">Blog</a>
+            <a href="#tecrubeler">Tecrübe</a>
+            <a href="#haberler-blog">Blog</a>
           </nav>
         </div>
 
@@ -49,12 +49,9 @@ export default function SiteFooter() {
         </div>
 
         <div className="footer-col footer-newsletter">
-          <h4 className="footer-heading">Newsletter/Contact</h4>
-          <p className="newsletter-text">Stay updated with my latest work and<br />insights.</p>
-          <form className="newsletter-form">
-            <input type="email" placeholder="Email Address" />
-            <button type="submit">Abone Ol</button>
-          </form>
+          <h4 className="footer-heading">İletişim</h4>
+          <p className="newsletter-text">Mesajınızı ve size ulaşabileceğim e-posta adresini doğrudan yönetim paneline bırakın.</p>
+          <a className="footer-contact-link" href="#iletisim">Bildirim gönder <span aria-hidden="true">↗</span></a>
         </div>
       </div>
 
