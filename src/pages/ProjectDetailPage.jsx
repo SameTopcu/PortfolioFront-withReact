@@ -323,15 +323,34 @@ export default function ProjectDetailPage({ slug, header }) {
         </section>
 
         {(hasOverview || hasInfo) && (
-          <section className="detail-two-column" id="details">
-            {hasOverview && (
-              <div className="detail-copy-stack">
+          <section className="detail-overview-section" id="details">
+            {(project.overview.content || hasInfo) && (
+              <div
+                className={`detail-two-column ${!project.overview.content || !hasInfo ? "single" : ""}`}
+              >
                 {project.overview.content && (
-                  <article>
+                  <article className="detail-overview-summary">
                     <h2>Proje Özeti</h2>
                     <RichContent html={project.overview.content} />
                   </article>
                 )}
+                {hasInfo && (
+                  <aside className="project-info-card">
+                    <h3>Proje Bilgileri</h3>
+                    <dl>
+                      {project.info.items.map((item) => (
+                        <div key={`${item.label}-${item.value}`}>
+                          <dt>{item.label}</dt>
+                          <dd>{item.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </aside>
+                )}
+              </div>
+            )}
+            {(project.overview.problem || project.overview.solution) && (
+              <div className="detail-copy-stack detail-wide-copy">
                 {project.overview.problem && (
                   <article>
                     <h2>Problem</h2>
@@ -345,19 +364,6 @@ export default function ProjectDetailPage({ slug, header }) {
                   </article>
                 )}
               </div>
-            )}
-            {hasInfo && (
-              <aside className="project-info-card">
-                <h3>Proje Bilgileri</h3>
-                <dl>
-                  {project.info.items.map((item) => (
-                    <div key={`${item.label}-${item.value}`}>
-                      <dt>{item.label}</dt>
-                      <dd>{item.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </aside>
             )}
           </section>
         )}

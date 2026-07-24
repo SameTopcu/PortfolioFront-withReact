@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { getBlogPosts } from '../api/portfolioApi'
-import { blogSlides } from '../data/portfolioData'
 import {
   ScrollAnimateContainer,
   ScrollAnimateItem,
@@ -12,12 +11,6 @@ const dateFormatter = new Intl.DateTimeFormat('tr-TR', {
   month: 'short',
   year: 'numeric',
 })
-
-const fallbackContent = {
-  eyebrow: 'blog',
-  heading: 'Haberler & Programlar',
-  items: blogSlides.map((slide) => ({ ...slide, detailUrl: '/blog-haber-detail' })),
-}
 
 function dateLabel(item) {
   if (!item.publishedAt) return item.date
@@ -39,7 +32,7 @@ export default function BlogSlider() {
     return () => controller.abort()
   }, [])
 
-  const resolved = content === undefined ? fallbackContent : content
+  const resolved = content
   const slides = resolved?.items ?? []
 
   if (!resolved || slides.length === 0) return null

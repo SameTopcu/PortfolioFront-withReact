@@ -285,3 +285,45 @@
     transition: none;
   }
 }
+
+/* Dark glass echoes the code editor in the hero photograph. */
+.skills-panel {
+  background: rgba(5, 12, 27, 0.76);
+  border-color: rgba(145, 194, 255, 0.2);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.42),
+    0 0 42px rgba(39, 119, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(125%);
+}
+
+.skills-window-toolbar {
+  border-bottom-color: rgba(145, 194, 255, 0.14);
+}
+
+.skills-window-toolbar > svg {
+  stroke: #7bcaff;
+}
+
+.skill-column-card {
+  background: rgba(9, 21, 45, 0.68);
+  border-color: rgba(151, 197, 255, 0.14);
+}
+
+.skill-card-stage:hover .skill-column-card {
+  border-color: rgba(123, 202, 255, 0.38);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
+}
+
+.skills-panel h3 {
+  color: #73d3ff;
+  border-bottom-color: rgba(151, 197, 255, 0.14);
+}
+
+.skill-card-stage-2 h3,
+.skill-card-stage-3 h3 {
+  color: #a7c8ff;
+}
+
+.skill-badges li {
+  color: #edf6ff;
+}

@@ -41,7 +41,15 @@ export default function Projects() {
 
   useEffect(() => {
     const controller = new AbortController()
-    getProjects({ signal: controller.signal }).then(setProjects).catch((error) => { if (error.name !== 'AbortError') console.warn(error.message) })
+    getProjects({ signal: controller.signal })
+      .then((items) => {
+        setProjects(Array.isArray(items) ? items : [])
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          console.warn('Projeler API üzerinden alınamadı.', error)
+        }
+      })
     return () => controller.abort()
   }, [])
 
@@ -63,8 +71,6 @@ export default function Projects() {
     }, 520)
     return () => window.clearTimeout(resetTimer)
   }, [activeIndex, projects.length, shouldSlide])
-
-  if (!projects.length) return null
 
   return (
     <section className="projects-section" id="projelerim">

@@ -1,24 +1,27 @@
 .site-header {
+  position: relative;
+  z-index: 20;
   height: 76px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 24px;
   padding: 0 clamp(24px, 4.2vw, 40px);
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #e4ebf6;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(203, 216, 235, 0.82);
   transition:
     background 220ms ease,
     box-shadow 220ms ease,
     backdrop-filter 220ms ease;
   border-radius: 20px;
-  box-shadow: 0 12px 32px rgba(21, 93, 232, 0.06);
+  box-shadow: 0 18px 48px rgba(38, 73, 128, 0.1);
+  backdrop-filter: blur(18px) saturate(135%);
   width: calc(100% - 48px);
-  max-width: 1200px;
+  max-width: 1320px;
   box-sizing: border-box;
   padding-left: 24px;
   padding-right: 30px;
-  margin: 0px auto 0;
+  margin: 22px auto 0;
 }
 
 .logo {
@@ -27,9 +30,9 @@
   gap: 9px;
   color: #155de8;
   font-family: var(--utility-font);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 850;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
   text-decoration: none;
 }
 
@@ -75,8 +78,8 @@
   position: relative;
   color: #0d326b;
   font-family: var(--utility-font);
-  font-size: 12px;
-  font-weight: 760;
+  font-size: 14px;
+  font-weight: 700;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
@@ -157,6 +160,8 @@
     height: auto;
     gap: 16px;
     padding: 18px 22px;
+    width: calc(100% - 28px);
+    margin-top: 14px;
   }
 
   .site-nav {
@@ -170,5 +175,54 @@
 
   .site-nav::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* The home navigation sits inside the photographic hero. */
+.portfolio-page .site-header {
+  position: absolute;
+  z-index: 20;
+  top: 22px;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+  background: rgba(5, 10, 22, 0.48);
+  border-color: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px) saturate(135%);
+  max-width: 1320px;
+  margin-top: 0;
+}
+
+.portfolio-page .logo,
+.portfolio-page .site-nav a {
+  color: #f7fbff;
+}
+
+.portfolio-page .logo-mark {
+  color: #07111f;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+}
+
+.portfolio-page .site-nav a::before {
+  background: #7bcaff;
+}
+
+.portfolio-page .site-nav a:focus-visible {
+  outline-color: rgba(123, 202, 255, 0.75);
+}
+
+.portfolio-page .search-button {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 1020px) {
+  .portfolio-page .site-header {
+    top: 14px;
+    width: calc(100% - 28px);
+    margin-top: 0;
   }
 }

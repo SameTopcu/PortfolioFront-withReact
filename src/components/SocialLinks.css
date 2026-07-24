@@ -77,3 +77,22 @@
     transition: none;
   }
 }
+
+.hero-section .social-links a {
+  color: #e7f1ff;
+}
+
+.hero-section .social-links a:not(:last-child)::after {
+  background: rgba(181, 216, 255, 0.25);
+}
+
+.hero-section .social-links a:hover,
+.hero-section .social-links a:focus-visible {
+  color: #7bd3ff;
+}
+
+@media (max-width: 720px) {
+  .hero-section .social-links {
+    justify-content: center;
+  }
+}

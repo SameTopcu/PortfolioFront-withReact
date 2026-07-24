@@ -25,81 +25,6 @@ export const skillGroups = [
   },
 ]
 
-export const projects = [
-  {
-    title: 'Portfolio Website',
-    tag: 'React / Laravel / MySQL',
-    description: 'UI tarafında hızlı ve yönetilebilir bir kişisel portfolyo yapısı.',
-    accent: 'code',
-    icon: 'code',
-    label: 'Featured',
-    year: '2026',
-  },
-  {
-    title: 'Portfolio Website',
-    tag: 'React / Laravel / MySQL',
-    description: 'UI tarafında hızlı ve yönetilebilir bir kişisel portfolyo yapısı.',
-    accent: 'code',
-    icon: 'code',
-    label: 'Featured',
-    year: '2026',
-  },
-  {
-    title: 'Portfolio Website',
-    tag: 'React / Laravel / MySQL',
-    description: 'UI tarafında hızlı ve yönetilebilir bir kişisel portfolyo yapısı.',
-    accent: 'code',
-    icon: 'code',
-    label: 'Featured',
-    year: '2026',
-  },
-  {
-    title: 'Portfolio Website',
-    tag: 'React / Laravel / MySQL',
-    description: 'UI tarafında hızlı ve yönetilebilir bir kişisel portfolyo yapısı.',
-    accent: 'code',
-    icon: 'code',
-    label: 'Featured',
-    year: '2026',
-  },
-  {
-    title: 'Portfolio Website',
-    tag: 'React / Laravel / MySQL',
-    description: 'UI tarafında hızlı ve yönetilebilir bir kişisel portfolyo yapısı.',
-    accent: 'code',
-    icon: 'code',
-    label: 'Featured',
-    year: '2026',
-  },
-  {
-    title: 'Admin Dashboard',
-    tag: 'React / Tailwind / REST API',
-    description: 'Veri yönetimi ve CRUD süreçleri için kompakt panel deneyimi.',
-    accent: 'panel',
-    icon: 'dashboard',
-    label: 'SaaS UI',
-    year: '2026',
-  },
-  {
-    title: 'E-Commerce UI',
-    tag: 'React / TypeScript / Stripe',
-    description: 'Kart, ödeme, katalog ve ürün akışı için modern arayüz.',
-    accent: 'commerce',
-    icon: 'cart',
-    label: 'Product',
-    year: '2025',
-  },
-  {
-    title: 'Blog CMS',
-    tag: 'PHP / Laravel / Blade',
-    description: 'Kategori, içerik ve medya yönetimi için sade CMS mimarisi.',
-    accent: 'blog',
-    icon: 'cms',
-    label: 'CMS',
-    year: '2025',
-  },
-]
-
 export const experiences = [
   {
     focus: 'Ağ',
@@ -121,36 +46,6 @@ export const experiences = [
     role: 'Kurumsal Uygulama ve Dijital Kanal Geliştirme Stajyeri',
     description:
       'ATM yazılım ve donanım süreçlerine destek verdim; kullanım verilerini analiz ederek performans raporları hazırladım.',
-  },
-]
-
-export const blogSlides = [
-  {
-    title: 'Türk Dünyası Projeleri',
-    text:
-      'Türk Dünyasının zengin kültürel mirasını ve tarihsel derinliğini detaylıca işleyen belgesel projemizin yapım süreci devam ederken, tamamlanan bölümler yayınlanarak geniş kitlelerle buluşmaya devam ediyor.',
-    image: '/blog-culture.png',
-    category: 'Kültür',
-    date: '28 Haz 2026',
-    readTime: '6 dk',
-  },
-  {
-    title: 'Dijital Kültür Arşivleri',
-    text:
-      'Tarih, kültür ve görsel hafıza alanındaki içerikleri dijital yayıncılık araçlarıyla daha erişilebilir hale getiren arşiv odaklı üretim süreçlerini inceliyorum.',
-    image: '/blog-tech.png',
-    category: 'Tech News',
-    date: '22 Haz 2026',
-    readTime: '4 dk',
-  },
-  {
-    title: 'Web ve Hikaye Anlatımı',
-    text:
-      'Modern web arayüzlerinde içerik, görsel ritim ve kullanıcı akışının birlikte çalıştığı anlatı yapıları üzerine notlar ve proje çıktıları paylaşıyorum.',
-    image: '/blog-web.png',
-    category: 'Program',
-    date: '15 Haz 2026',
-    readTime: '5 dk',
   },
 ]
 

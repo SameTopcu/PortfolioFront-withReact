@@ -229,11 +229,25 @@
   align-items: start;
 }
 
+.detail-overview-section {
+  display: grid;
+  gap: 56px;
+}
+
+.detail-two-column.single {
+  grid-template-columns: 1fr;
+}
+
 .detail-copy-stack {
   display: grid;
   gap: 48px;
 }
 
+.detail-wide-copy {
+  width: 100%;
+}
+
+.detail-overview-summary h2,
 .detail-copy-stack article h2,
 .detail-tech-stack h2,
 .detail-features h2,
@@ -247,6 +261,7 @@
   letter-spacing: -0.03em;
 }
 
+.detail-overview-summary p,
 .detail-copy-stack article p {
   margin: 0;
   color: #64748b;
@@ -254,6 +269,7 @@
   line-height: 1.75;
 }
 
+.detail-overview-summary p + p,
 .detail-copy-stack article p + p {
   margin-top: 16px;
 }
@@ -397,7 +413,7 @@
 .related-content small {
   margin: 0;
   color: #64748b;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.65;
 }
 
@@ -406,9 +422,6 @@
   gap: 32px;
 }
 
-.detail-section-heading p {
-  max-width: 680px;
-}
 
 .technical-depth-grid {
   display: grid;

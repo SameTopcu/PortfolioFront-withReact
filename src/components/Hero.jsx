@@ -40,7 +40,6 @@ export default function Hero({ hero, skillGroups }) {
         <span className="hero-orb hero-orb-blue" />
         <span className="hero-orb hero-orb-violet" />
         <span className="hero-orb hero-orb-cyan" />
-        <span className="hero-motion-grid" />
       </div>
 
       <motion.div
